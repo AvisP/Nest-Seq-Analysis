@@ -13,6 +13,7 @@ import numpy as np
 import time
 from datetime import datetime
 from avgn.utils.audio import load_wav, read_wav
+import soundfile as sf
 
 
 # DATASET_ID = 'bengalese_finch_sakata'
@@ -190,9 +191,10 @@ def generate_json_wav_not_mat(row, WAVLIST, wav_names, DT_ID, species, common_na
 
     # save wav file
     avgn.utils.paths.ensure_dir(wav_out)
-    librosa.output.write_wav(
-        wav_out, y=bout_wav.astype("float32"), sr=int(rate), norm=True
-    )
+#     librosa.output.write_wav(
+#         wav_out, y=bout_wav.astype("float32"), sr=int(rate), norm=True
+#     )
+    sf.write(wav_out, bout_wav.astype("float32"), int(rate), 'PCM_24')
 
     # save json
     avgn.utils.paths.ensure_dir(json_out.as_posix())
