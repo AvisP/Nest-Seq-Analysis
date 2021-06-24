@@ -1,6 +1,6 @@
 from scipy.signal import butter, lfilter
 import numpy as np
-from librosa.core.time_frequency import mel_frequencies
+from librosa import mel_frequencies
 import warnings
 
 
@@ -71,7 +71,7 @@ def prepare_mel_matrix(hparams, rate, return_numpy=True, GPU_backend=False):
             os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"  # see issue #152
             os.environ["CUDA_VISIBLE_DEVICES"] = ""
         import tensorflow as tf
-        tf.enable_eager_execution()
+#         tf.enable_eager_execution()
         assert tf.executing_eagerly()
 
     # create a filter to convolve with the spectrogram
